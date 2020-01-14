@@ -13,7 +13,7 @@ app.use(cors());
 
 app.use(function authentication(req, res, next) {
     const serverKey = process.env.API_KEY;
-    const authToken = req.get('Authorization');
+    const authToken = req.get('Authorization').split(' ')[1];
 
     if (!authToken || authToken !== serverKey) {
         res.status(401).json({ error: "Unauthorized"})
